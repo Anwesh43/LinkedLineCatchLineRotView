@@ -183,4 +183,26 @@ class LineCatchLineRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineCatchLineRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lclr : LineCatchLineRot = LineCatchLineRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lclr.draw(canvas, paint)
+            animator.animate {
+                lclr.update {
+                    animator.stop()
+                }
+            }
+        }
+        fun handleTap() {
+            lclr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
