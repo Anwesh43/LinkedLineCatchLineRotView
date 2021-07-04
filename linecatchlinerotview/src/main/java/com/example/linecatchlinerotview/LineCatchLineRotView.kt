@@ -207,4 +207,13 @@ class LineCatchLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineCatchLineRotView {
+            val view : LineCatchLineRotView = LineCatchLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
